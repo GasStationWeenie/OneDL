@@ -37,7 +37,7 @@ import json
 import re
 import bencodepy
 
-VERSION = "1.8.0"
+VERSION = "1.8.0-GSHD"
 
 CYAN = "\033[96m"
 YELLOW = "\033[93m"
@@ -2289,48 +2289,33 @@ def main():
     print_status_box()
     print()
     print(f"{CYAN}What do you want to do?{RESET}")
-    print(f"{YELLOW}1{RESET}. Paste URL(s)")
-    print(f"{YELLOW}2{RESET}. Load URLs from text file")
-    if REAL_DEBRID_API_TOKEN or ALLDEBRID_API_TOKEN or PREMIUMIZE_API_TOKEN or TORBOX_API_TOKEN:
-        print(f"{YELLOW}3{RESET}. Use Debrid Service")
-    choice = input("Enter 1, 2 or 3: ").strip()
+    print(f"{YELLOW}1{RESET}. Add Magnet or URL")
+    if PREMIUMIZE_API_TOKEN or TORBOX_API_TOKEN:
+        print(f"{YELLOW}2{RESET}. Upload Container File (.torrent or .nzb)")
+    submode = input("Enter 1 or 2: ").strip()
+    if submode not in ("1", "2"):
+        print(f"{RED}Invalid choice.{RESET}")
+        return
 
-    if choice == '1':
-        urls = get_urls_from_input()
-
-    elif choice == '2':
-        urls = get_urls_from_file()
-
-    elif choice == '3':
-        print()
-        print(f"{CYAN}What do you want to do?{RESET}")
-        print(f"{YELLOW}1{RESET}. Add Magnet or URL")
-        if PREMIUMIZE_API_TOKEN or TORBOX_API_TOKEN:
-            print(f"{YELLOW}2{RESET}. Upload Container File (.torrent or .nzb)")
-        submode = input("Enter 1 or 2: ").strip()
-        if submode not in ("1", "2"):
-            print(f"{RED}Invalid choice.{RESET}")
+    if submode == "2":
+        files = list_container_files()
+        if not files:
+            print(f"{RED}No .torrent or .nzb files found in this folder.{RESET}")
             return
-
-        if submode == "2":
-            files = list_container_files()
-            if not files:
-                print(f"{RED}No .torrent or .nzb files found in this folder.{RESET}")
-                return
-            print()
-            print(f"{CYAN}Select a container file to upload:{RESET}")
-            for idx, f in enumerate(files, 1):
-                print(f"{YELLOW}{idx}{RESET}: {f}")
-            while True:
-                file_choice = input("Enter the number of the file: ").strip()
-                if file_choice.isdigit() and 1 <= int(file_choice) <= len(files):
-                    container_file = files[int(file_choice) - 1]
-                    break
-                print(f"{RED}Invalid choice, try again.{RESET}")
-            ext = os.path.splitext(container_file)[1].lower()
-        else:
-            container_file = None
-            ext = None
+        print()
+        print(f"{CYAN}Select a container file to upload:{RESET}")
+        for idx, f in enumerate(files, 1):
+            print(f"{YELLOW}{idx}{RESET}: {f}")
+        while True:
+            file_choice = input("Enter the number of the file: ").strip()
+            if file_choice.isdigit() and 1 <= int(file_choice) <= len(files):
+                container_file = files[int(file_choice) - 1]
+                break
+            print(f"{RED}Invalid choice, try again.{RESET}")
+        ext = os.path.splitext(container_file)[1].lower()
+    else:
+        container_file = None
+        ext = None
 
         print()
         print(f"{CYAN}Which debrid service do you want to use?{RESET}")
@@ -2465,10 +2450,6 @@ def main():
         else:
             print(f"{RED}Invalid choice.{RESET}")
             return
-
-    else:
-        print(f"{RED}Invalid choice.{RESET}")
-        return
 
     # Download phase
     total = len(urls)
