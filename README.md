@@ -12,7 +12,7 @@ Whether you're pasting a magnet link or unlocking hoster URLs, OneDL handles eve
 
 ## ✨ Features
 
-- ✅ Supports **magnet links**, **hoster URLs**, **MEGA folders**, **Torrent files**, **NZB files**, and **direct HTTP(S)** links  
+- ✅ Supports **magnet links**, **hoster URLs**, **MEGA folders**, **Torrent files**, and **NZB files** all through your debrid services
 - ✅ Integrates with:
   - [Real-Debrid](https://real-debrid.com/)
   - [AllDebrid](https://alldebrid.com/)
@@ -53,8 +53,8 @@ pip install requests bencodepy
 Download `OneDL.py` directly from GitHub:
 
 ```bash
-curl -o OneDL.py https://raw.githubusercontent.com/ellite/OneDL/refs/heads/main/OneDL.py
-curl -o ~/.onedl.conf https://raw.githubusercontent.com/ellite/OneDL/refs/heads/main/.onedl.conf
+curl -o OneDL.py https://raw.githubusercontent.com/GasStationWeenie/OneDL/refs/heads/main/OneDL.py
+curl -o ~/.onedl.conf https://raw.githubusercontent.com/GasStationWeenie/OneDL/refs/heads/main/.onedl.conf
 chmod +x OneDL.py
 ```
 
@@ -77,7 +77,7 @@ onedl
 ## 🔄 Update
 
 ```bash
-curl -o OneDL.py https://raw.githubusercontent.com/ellite/OneDL/refs/heads/main/OneDL.py
+curl -o OneDL.py https://raw.githubusercontent.com/GasStationWeenie/OneDL/refs/heads/main/OneDL.py
 ```
 
 ---
