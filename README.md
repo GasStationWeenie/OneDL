@@ -91,11 +91,10 @@ curl -o OneDL.py https://raw.githubusercontent.com/GasStationWeenie/OneDL/refs/h
     ```
 
 2. Choose how to provide your links:
-   - Load from a file
-   - Paste manually
-   - Use a debrid service
+   - Add Magnet or URL
+   - Upload Container File (nzb available if supported via debrid provider)
 
-3. If using a debrid service:
+3. After providing a URL or Container File:
    - Select Real-Debrid, AllDebrid, Premiumize.me, Torbox, or "Find best option"
    - Paste your magnet, hoster, or HTTP(S) URL when prompted, or upload a .torrent or .nzb file
 
