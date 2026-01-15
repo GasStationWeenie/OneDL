@@ -1,5 +1,5 @@
-# OneDL
-
+# OneDL - Debrid-Only Mod
+# This version does not allow downloading without a Debrid service configured
 <p align="left">
   <img src="./onedl.png" alt="OneDL Logo" width="200"/>
 </p>
